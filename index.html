@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BioDev - Videolar</title>
+
+<link rel="icon" type="image/png" href="biodev_logo.png">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f4f6f9;
+}
+
+.banner {
+    background: linear-gradient(135deg, #2c3e50, #34495e);
+    padding: 30px 20px;
+    color: white;
+}
+
+.banner-content {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.banner-logo {
+    width: 80px;
+    height: auto;
+}
+
+.banner-text h1 {
+    font-size: 32px;
+}
+
+.banner-text p {
+    opacity: 0.8;
+    font-size: 14px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.video-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    transition: 0.3s ease;
+    text-decoration: none;
+    color: black;
+}
+
+.video-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.video-card img {
+    width: 100%;
+    display: block;
+}
+
+.video-info {
+    padding: 15px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="banner">
+    <div class="banner-content">
+
+        <img src="biodev_logo.png" class="banner-logo" alt="BioDev Logo">
+
+        <div class="banner-text">
+            <h1>BioDev Grubu</h1>
+            <p>YouTube video arşivi.</p>
+        </div>
+
+    </div>
+</div>
+
+<div class="container" id="videoContainer"></div>
+
+<script>
+
+const videos = [
+    "https://www.youtube.com/watch?v=82XTxO-6VCA"
+];
+
+const container = document.getElementById("videoContainer");
+
+videos.forEach(link => {
+
+    const videoId = getYoutubeId(link);
+    const thumbnail = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+
+    const card = document.createElement("a");
+    card.href = link;
+    card.target = "_blank";
+    card.className = "video-card";
+
+    card.innerHTML = `
+        <img src="${thumbnail}">
+        <div class="video-info">
+            <h3>YouTube Video</h3>
+        </div>
+    `;
+
+    container.appendChild(card);
+});
+
+function getYoutubeId(url) {
+    const regExp = /(?:youtube\.com\/.*v=|youtu\.be\/)([^&]+)/;
+    const match = url.match(regExp);
+    return match ? match[1] : null;
+}
+
+</script>
+
+</body>
+</html>
