@@ -3,137 +3,521 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BioDev - Videolar</title>
-
-<link rel="icon" type="image/png" href="biodev_logo.png">
-
+<title>Biodev Grubu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0b0f0e;
+    --surface: #111714;
+    --card: #161d1a;
+    --border: #1f2d27;
+    --accent: #2ee88a;
+    --accent2: #1abc6e;
+    --text: #e8f0eb;
+    --muted: #6b8075;
+    --mono: 'Space Mono', monospace;
+    --sans: 'Syne', sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(46,232,138,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(46,232,138,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
 
-body {
-    background: #f4f6f9;
-}
-
-.banner {
-    background: linear-gradient(135deg, #2c3e50, #34495e);
-    padding: 30px 20px;
-    color: white;
-}
-
-.banner-content {
-    max-width: 1200px;
-    margin: auto;
+  header {
+    position: relative;
+    z-index: 1;
+    padding: 2.5rem 2rem 1.5rem;
+    max-width: 1100px;
+    margin: 0 auto;
     display: flex;
     align-items: center;
-    gap: 20px;
-}
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-decoration: none;
+  }
+  .logo img {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(46,232,138,0.3);
+  }
+  .logo-text {
+    font-family: var(--sans);
+    font-weight: 800;
+    font-size: 1.25rem;
+    color: var(--text);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+  .logo-text span { color: var(--accent); }
+  .logo-sub {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    margin-top: 2px;
+  }
+  nav { display: flex; align-items: center; gap: 0; }
+  nav a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-family: var(--mono);
+    transition: color 0.2s;
+    margin-left: 2rem;
+  }
+  nav a:hover { color: var(--accent); }
+  .nav-yt {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: rgba(46,232,138,0.08);
+    border: 1px solid rgba(46,232,138,0.25);
+    color: var(--accent) !important;
+    border-radius: 8px;
+    padding: 7px 14px;
+    margin-left: 1.5rem !important;
+    transition: background 0.2s !important;
+  }
+  .nav-yt:hover { background: rgba(46,232,138,0.15) !important; }
+  .nav-yt svg { width: 14px; height: 14px; fill: var(--accent); }
 
-.banner-logo {
-    width: 80px;
-    height: auto;
-}
+  .hero {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 3.5rem 2rem 2.5rem;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(46,232,138,0.08);
+    border: 1px solid rgba(46,232,138,0.2);
+    border-radius: 100px;
+    padding: 6px 14px;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--accent);
+    margin-bottom: 2rem;
+    letter-spacing: 0.05em;
+  }
+  .pulse {
+    width: 7px; height: 7px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.7); }
+  }
+  .hero h1 {
+    font-family: var(--sans);
+    font-weight: 800;
+    font-size: clamp(2.2rem, 5.5vw, 4.5rem);
+    line-height: 1.06;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.4rem;
+  }
+  .hero h1 .green { color: var(--accent); }
+  .hero p {
+    font-size: 1.05rem;
+    color: var(--muted);
+    max-width: 520px;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+  }
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--accent);
+    color: #0b0f0e;
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: 0.95rem;
+    padding: 14px 28px;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .hero-cta:hover { background: var(--accent2); transform: translateY(-2px); }
+  .hero-cta svg { width: 18px; height: 18px; fill: #0b0f0e; }
 
-.banner-text h1 {
-    font-size: 32px;
-}
+  .stats {
+    display: flex;
+    gap: 2.5rem;
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+    flex-wrap: wrap;
+  }
+  .stat-num {
+    font-family: var(--mono);
+    font-size: 1.5rem;
+    color: var(--accent);
+    display: block;
+  }
+  .stat-label {
+    font-size: 0.78rem;
+    color: var(--muted);
+    margin-top: 3px;
+    display: block;
+    letter-spacing: 0.03em;
+  }
 
-.banner-text p {
-    opacity: 0.8;
-    font-size: 14px;
-}
+  .section-label {
+    position: relative; z-index: 1;
+    max-width: 1100px;
+    margin: 4rem auto 1.5rem;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .section-label span {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
 
-.container {
-    max-width: 1200px;
-    margin: 40px auto;
-    padding: 20px;
+  .featured-wrap {
+    position: relative; z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem 1rem;
+  }
+  .featured-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+  }
+  @media (max-width: 680px) { .featured-card { grid-template-columns: 1fr; } }
+  .featured-thumb {
+    position: relative;
+    min-height: 270px;
+    background: var(--surface);
+    overflow: hidden;
+  }
+  .featured-thumb iframe {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    border: none;
+  }
+  .featured-info {
+    padding: 2rem 2rem 2rem 1.75rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .featured-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(46,232,138,0.1);
+    border: 1px solid rgba(46,232,138,0.25);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    padding: 4px 10px;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    width: fit-content;
+    letter-spacing: 0.06em;
+  }
+  .featured-title {
+    font-weight: 800;
+    font-size: 1.2rem;
+    line-height: 1.3;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.02em;
+  }
+  .featured-desc {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.65;
+    margin-bottom: 1.5rem;
+  }
+  .watch-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 0.85rem;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    width: fit-content;
+    transition: background 0.2s, color 0.2s;
+  }
+  .watch-btn svg { width: 15px; height: 15px; fill: var(--accent); transition: fill 0.2s; }
+  .watch-btn:hover { background: var(--accent); color: #0b0f0e; }
+  .watch-btn:hover svg { fill: #0b0f0e; }
+
+  .video-grid {
+    position: relative; z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem 5rem;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 25px;
-}
-
-.video-card {
-    background: white;
-    border-radius: 12px;
+    gap: 1.25rem;
+  }
+  .video-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
     overflow: hidden;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-    transition: 0.3s ease;
     text-decoration: none;
-    color: black;
-}
-
-.video-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-}
-
-.video-card img {
-    width: 100%;
+    color: var(--text);
     display: block;
-}
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .video-card:hover { border-color: rgba(46,232,138,0.4); transform: translateY(-4px); }
+  .thumb-wrap {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%;
+    background: var(--surface);
+    overflow: hidden;
+  }
+  .thumb-wrap img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .play-overlay {
+    position: absolute; inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.25);
+    transition: background 0.2s;
+  }
+  .video-card:hover .play-overlay { background: rgba(0,0,0,0.05); }
+  .play-btn {
+    width: 50px; height: 50px;
+    background: var(--accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s;
+  }
+  .play-btn svg { width: 18px; height: 18px; fill: #0b0f0e; margin-left: 3px; }
+  .video-card:hover .play-btn { transform: scale(1.12); }
+  .video-info { padding: 1rem 1.1rem 1.25rem; }
+  .video-tag {
+    display: inline-block;
+    background: rgba(46,232,138,0.1);
+    border: 1px solid rgba(46,232,138,0.2);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.63rem;
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-bottom: 0.55rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .video-title {
+    font-weight: 600;
+    font-size: 0.93rem;
+    line-height: 1.4;
+    margin-bottom: 0.35rem;
+  }
+  .video-desc {
+    font-size: 0.8rem;
+    color: var(--muted);
+    line-height: 1.55;
+  }
 
-.video-info {
-    padding: 15px;
-}
+  footer {
+    position: relative; z-index: 1;
+    border-top: 1px solid var(--border);
+    padding: 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .footer-left { display: flex; align-items: center; gap: 12px; }
+  .footer-logo { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; opacity: 0.7; }
+  .footer-text { font-family: var(--mono); font-size: 0.76rem; color: var(--muted); }
+  .footer-yt {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 0.76rem;
+    transition: color 0.2s;
+  }
+  .footer-yt:hover { color: var(--accent); }
+  .footer-yt svg { width: 15px; height: 15px; fill: currentColor; }
+
+  @media (max-width: 600px) {
+    header { flex-wrap: wrap; }
+    nav a { margin-left: 0; margin-right: 1.2rem; }
+    .nav-yt { margin-left: 0 !important; }
+    .stats { gap: 1.75rem; }
+    .hero { padding: 2.5rem 1.25rem 2rem; }
+    .video-grid { padding: 0 1.25rem 4rem; }
+    .section-label { padding: 0 1.25rem; }
+    .featured-wrap { padding: 0 1.25rem 1rem; }
+    footer { padding: 1.5rem 1.25rem; }
+  }
 </style>
 </head>
-
 <body>
 
-<div class="banner">
-    <div class="banner-content">
-
-        <img src="biodev_logo.png" class="banner-logo" alt="BioDev Logo">
-
-        <div class="banner-text">
-            <h1>BioDev Grubu</h1>
-            <p>YouTube video arşivi.</p>
-        </div>
-
+<header>
+  <a href="#" class="logo">
+    <img src="logo.png" alt="Biodev Grubu Logo" />
+    <div>
+      <div class="logo-text">Biodev <span>Grubu</span></div>
+      <div class="logo-sub">BİYOTEKNOLOJİ · ARAŞTIRMA · BİLİMSEL İÇERİK</div>
     </div>
+  </a>
+  <nav>
+    <a href="#videolar">Videolar</a>
+    <a href="https://youtube.com/@biodevgroup" target="_blank" class="nav-yt">
+      <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-2.74 12.59 12.59 0 00-8.45 5.4 12.53 12.53 0 000 5.3 12.59 12.59 0 008.45 5.4 4.83 4.83 0 003.77-2.74 5 5 0 000-10.62zM10 15V9l5 3z"/></svg>
+      YouTube
+    </a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-badge">
+    <div class="pulse"></div>
+    Biyoteknoloji · Araştırma · Bilimsel İçerik
+  </div>
+  <h1>Bilim doğadan <span class="green">başlar.</span></h1>
+  <p>Biodev Grubu, biyoteknoloji ve bilimsel içerikler üretir. Ücretsiz ve reklamsız bir şekilde izlersiniz. Biodev bir öğrenci topluluğudur. Bu işlerden herhangi bir para kazanmaz.</p>
+  <a href="https://youtube.com/@biodevgroup" target="_blank" class="hero-cta">
+    <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-2.74 12.59 12.59 0 00-8.45 5.4 12.53 12.53 0 000 5.3 12.59 12.59 0 008.45 5.4 4.83 4.83 0 003.77-2.74 5 5 0 000-10.62zM10 15V9l5 3z"/></svg>
+    Kanala Git
+  </a>
+  <div class="stats">
+    <div class="stat-item">
+      <span class="stat-num">2025</span>
+      <span class="stat-label">Kuruluş Yılı</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">YT</span>
+      <span class="stat-label">Platform</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">TR</span>
+      <span class="stat-label">Dil</span>
+    </div>
+  </div>
+</section>
+
+<div class="section-label" id="videolar">
+  <span>// öne çıkan video</span>
+</div>
+<div class="featured-wrap">
+  <div class="featured-card">
+    <div class="featured-thumb">
+      <iframe
+        src="https://www.youtube.com/embed/82XTxO-6VCA"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+    </div>
+    <div class="featured-info">
+      <div class="featured-badge">★ Öne Çıkan</div>
+      <div class="featured-title">Canlıların Sınıflandırımlası 9.Sınıf</div>
+      <div class="featured-desc">Biyoloji 9. Sınıf Canlıların Sınıflandırılması konusu kısa ve basit bir halde sizlere anlatmaya çalıtık.</div>
+      <a href="https://www.youtube.com/watch?v=82XTxO-6VCA" target="_blank" class="watch-btn">
+        <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-2.74 12.59 12.59 0 00-8.45 5.4 12.53 12.53 0 000 5.3 12.59 12.59 0 008.45 5.4 4.83 4.83 0 003.77-2.74 5 5 0 000-10.62zM10 15V9l5 3z"/></svg>
+        YouTube'da İzle
+      </a>
+    </div>
+  </div>
 </div>
 
-<div class="container" id="videoContainer"></div>
+<div class="section-label">
+  <span>// tüm videolar</span>
+</div>
+<div class="video-grid">
 
-<script>
-
-const videos = [
-    "https://www.youtube.com/watch?v=82XTxO-6VCA"
-];
-
-const container = document.getElementById("videoContainer");
-
-videos.forEach(link => {
-
-    const videoId = getYoutubeId(link);
-    const thumbnail = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
-
-    const card = document.createElement("a");
-    card.href = link;
-    card.target = "_blank";
-    card.className = "video-card";
-
-    card.innerHTML = `
-        <img src="${thumbnail}">
-        <div class="video-info">
-            <h3>YouTube Video</h3>
+  <a class="video-card" href="https://www.youtube.com/watch?v=82XTxO-6VCA&t" target="_blank">
+    <div class="thumb-wrap">
+      <img src="https://img.youtube.com/vi/82XTxO-6VCA/mqdefault.jpg" alt="Video 1" loading="lazy" />
+      <div class="play-overlay">
+        <div class="play-btn">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
         </div>
-    `;
+      </div>
+    </div>
+    <div class="video-info">
+      <div class="video-tag">Araştırma</div>
+      <div class="video-title">Canlıların Sınıflandırımlası 9.Sınıf</div>
+      <div class="video-desc">Biyoloji 9. Sınıf Canlıların Sınıflandırılması konusu kısa ve basit bir halde sizlere anlatmaya çalıtık.</div>
+    </div>
+  </a>
 
-    container.appendChild(card);
-});
+</div>
 
-function getYoutubeId(url) {
-    const regExp = /(?:youtube\.com\/.*v=|youtu\.be\/)([^&]+)/;
-    const match = url.match(regExp);
-    return match ? match[1] : null;
-}
-
-</script>
+<footer>
+  <div class="footer-left">
+    <img src="logo.png" alt="logo" class="footer-logo" />
+    <span class="footer-text">© 2025 Biodev Grubu</span>
+  </div>
+  <a href="https://youtube.com/@biodevgroup" target="_blank" class="footer-yt">
+    <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-2.74 12.59 12.59 0 00-8.45 5.4 12.53 12.53 0 000 5.3 12.59 12.59 0 008.45 5.4 4.83 4.83 0 003.77-2.74 5 5 0 000-10.62zM10 15V9l5 3z"/></svg>
+    youtube.com/@biodevgroup
+  </a>
+</footer>
 
 </body>
 </html>
