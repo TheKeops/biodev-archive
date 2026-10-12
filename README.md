@@ -1,6 +1,6 @@
 # BioDev Video Arşiv Sitesi
 
-Bu site, **BioDev Grubu** tarafından hazırlanan videoların kolay erişimi ve toplu hale getirilmesi amacıyla hazırlanmıştır.
+Bu site, **Müfredat Medya Grubu** tarafından hazırlanan videoların kolay erişimi ve toplu hale getirilmesi amacıyla hazırlanmıştır.
 
 Site, eklenen YouTube bağlantılarından otomatik olarak video kartı ve kapak görseli oluşturur.  
 Basit, hızlı ve kullanıcı dostu bir arşiv sistemi sunar.
@@ -18,8 +18,8 @@ Basit, hızlı ve kullanıcı dostu bir arşiv sistemi sunar.
 
 ## Amaç
 
-BioDev içeriklerini düzenli, erişilebilir ve tek bir merkezde toplamak.
+Müfredat Medya içeriklerini düzenli, erişilebilir ve tek bir merkezde toplamak.
 
 ---
 
-© BioDev Grubu
+2026 © Müfredat Medya Grubu
