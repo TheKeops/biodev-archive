@@ -1,4 +1,4 @@
-# BioDev Video Arşiv Sitesi
+# Müfredat Medya site
 
 Bu site, **Müfredat Medya Grubu** tarafından hazırlanan videoların kolay erişimi ve toplu hale getirilmesi amacıyla hazırlanmıştır.
 
